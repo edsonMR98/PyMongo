@@ -2,10 +2,12 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import datetime
 
+# Connection with MongoClient, getting database and collection
 mongoClient = MongoClient('mongodb://localhost:27017/')
 db = mongoClient.pymongo
 collection = db.test
 
+# Inserting documents
 """collection.insert_many(
     [
         {"name": "Edson", "phone": "3141093387", "date": datetime.datetime.utcnow()},
@@ -24,6 +26,7 @@ idStr = str(id)"""
     ]
 )"""
 
+# Getting documents
 #print(db.list_collection_names()) # Gets the collection names
 #print(collection.find_one()) # Gets the first document
 #print(collection.find_one({"_id": id})) # Gets the matched document
@@ -34,8 +37,16 @@ idStr = str(id)"""
 for doc in collection.find(): # Prints all the collection docuemnts
     print(doc)
 
-for doc in collection.find({"name": "CDMX"}): # Prints all collections documents matched
-    print(doc)
+"""for doc in collection.find({"name": "CDMX"}): # Prints all collections documents matched
+    print(doc)"""
 
-print(collection.count_documents({})) # Gets the number of documents
-print(collection.count_documents({"name": "Manza"})) # Gets the number of documents matched
+# Counting documents
+#print(collection.count_documents({})) # Gets the number of documents
+#print(collection.count_documents({"name": "Manza"})) # Gets the number of documents matched
+
+print("\n")
+# Range queries
+# There are operators that are useful to create advanced queries
+d = datetime.datetime(2020, 1, 20, 18, 44, 8, 929000)
+for doc in collection.find({"date": {"$lt": d}}): # $lt means less than
+    print(doc)
