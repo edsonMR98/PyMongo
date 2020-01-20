@@ -34,8 +34,11 @@ idStr = str(id)"""
 #print(collection.find_one({"_id": ObjectId(idStr)})) # Gets the matched document, parse a str to ObjectId
 #print(collection.find_one({"name": "Yosa"})) # Gets the matched document
 #print(ids.inserted_ids) # gets the _id inserted (2+ documets)
-for doc in collection.find(): # Prints all the collection docuemnts
+x = 0
+for doc in collection.find(): # Prints all the collection docuemnts. .find({}, {"_id": 1}) = Shows just _id field
+    x += 1
     print(doc)
+    #collection.update_one({"_id": doc["_id"]}, {"$set": {"id": x}}) # Adds new field each document
 
 """for doc in collection.find({"name": "CDMX"}): # Prints all collections documents matched
     print(doc)"""
@@ -48,5 +51,5 @@ print("\n")
 # Range queries
 # There are operators that are useful to create advanced queries
 d = datetime.datetime(2020, 1, 20, 18, 44, 8, 929000)
-for doc in collection.find({"date": {"$lt": d}}): # $lt means less than
-    print(doc)
+#for doc in collection.find({"date": {"$lt": d}}).sort("name"): # $lt means less than
+ #   print(doc)
