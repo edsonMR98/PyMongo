@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
-import datetime
+import datetime, pymongo
 
 # Connection with MongoClient, getting database and collection
 mongoClient = MongoClient('mongodb://localhost:27017/')
@@ -53,3 +53,9 @@ print("\n")
 d = datetime.datetime(2020, 1, 20, 18, 44, 8, 929000)
 #for doc in collection.find({"date": {"$lt": d}}).sort("name"): # $lt means less than
  #   print(doc)
+
+# Index
+#collection.create_index([("id", pymongo.ASCENDING)], unique=True) # Create a index on a key that rejects documents whose value for that key already exists in the index
+print(sorted(list(collection.index_information())))
+collection.insert_one({"name": "Tecoman", "phone": "3141093387", "date": datetime.datetime.utcnow(), "id": 18})
+#collection.insert_one({"name": "Colima", "phone": "3141093387", "date": datetime.datetime.utcnow(), "id": 16})
