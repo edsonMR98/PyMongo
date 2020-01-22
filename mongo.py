@@ -19,46 +19,46 @@ collection = db.dictionary
 print(id) # Prints its ObjectId (ObjectId type)
 idStr = str(id)"""
 
-"""collection.insert_one({
-    "tabla": "",
-    "periodicidad": 0,
-    "data":[
+collection.insert_one({
+    "Tabla": "Prueba6",
+    "Periodicidad": 0,
+    "Data":[
         {
-            "Campo1": {
-                "Clave": "",
-                "Llave": "",
-                "Tipo de Dato": "",
-                "Tipo de Dato Estadistico": "",
-                "Descripcion": "",
-                "Estructura": "",
-                "Longitud": "",
-                "Dominio": "",
-                "Alias": "",
-                "Area": "",
-                "Marca": "",
-                "Pais": "",
-                "Region": ""
-            },
-            "Campo2": {
-                "Clave": "",
-                "Llave": "",
-                "Tipo de Dato": "",
-                "Tipo de Dato Estadistico": "",
-                "Descripcion": "",
-                "Estructura": "",
-                "Longitud": "",
-                "Dominio": "",
-                "Alias": "",
-                "Area": "",
-                "Marca": "",
-                "Pais": "",
-                "Region": ""
-            }
+            "Clave": "NOM",
+            "Llave": "",
+            "Campo": "Nombre",
+            "TipoDeDato": "String",
+            "TipoDeDatoEstadistico": "",
+            "Descripcion": "Identifica el nombre",
+            "Estructura": "",
+            "Longitud": "",
+            "Dominio": "",
+            "Alias": "",
+            "Area": "",
+            "Marca": "",
+            "Pais": "",
+            "Region": ""
+        },
+        {
+            "Clave": "RFC",
+            "Llave": "",
+            "Campo": "RFC",
+            "TipoDeDato": "String",
+            "TipoDeDatoEstadistico": "",
+            "Descripcion": "Identifica el nombre",
+            "Estructura": "",
+            "Longitud": "",
+            "Dominio": "",
+            "Alias": "",
+            "Area": "",
+            "Marca": "",
+            "Pais": "",
+            "Region": ""
         }
     ]
-})"""
+})
 
-collection.update_one({}, {"$set": {"tabla": "Prueba"}})
+#collection.update_one({}, {"$set": {"tabla": "Prueba"}})
 
 """ids = collection.insert_many(
     [
