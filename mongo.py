@@ -5,7 +5,7 @@ import datetime, pymongo
 # Connection with MongoClient, getting database and collection
 mongoClient = MongoClient('mongodb://localhost:27017/')
 db = mongoClient.pymongo
-collection = db.test
+collection = db.dictionary
 
 # Inserting documents
 """collection.insert_many(
@@ -18,6 +18,47 @@ collection = db.test
 """id = collection.insert_one({"name": "CDMX", "phone": "3141093387", "date": datetime.datetime.utcnow()}).inserted_id # Gets the _id inserted (1 document)
 print(id) # Prints its ObjectId (ObjectId type)
 idStr = str(id)"""
+
+"""collection.insert_one({
+    "tabla": "",
+    "periodicidad": 0,
+    "data":[
+        {
+            "Campo1": {
+                "Clave": "",
+                "Llave": "",
+                "Tipo de Dato": "",
+                "Tipo de Dato Estadistico": "",
+                "Descripcion": "",
+                "Estructura": "",
+                "Longitud": "",
+                "Dominio": "",
+                "Alias": "",
+                "Area": "",
+                "Marca": "",
+                "Pais": "",
+                "Region": ""
+            },
+            "Campo2": {
+                "Clave": "",
+                "Llave": "",
+                "Tipo de Dato": "",
+                "Tipo de Dato Estadistico": "",
+                "Descripcion": "",
+                "Estructura": "",
+                "Longitud": "",
+                "Dominio": "",
+                "Alias": "",
+                "Area": "",
+                "Marca": "",
+                "Pais": "",
+                "Region": ""
+            }
+        }
+    ]
+})"""
+
+collection.update_one({}, {"$set": {"tabla": "Prueba"}})
 
 """ids = collection.insert_many(
     [
@@ -47,7 +88,7 @@ for doc in collection.find(): # Prints all the collection docuemnts. .find({}, {
 #print(collection.count_documents({})) # Gets the number of documents
 #print(collection.count_documents({"name": "Manza"})) # Gets the number of documents matched
 
-print("\n")
+#print("\n")
 # Range queries
 # There are operators that are useful to create advanced queries
 d = datetime.datetime(2020, 1, 20, 18, 44, 8, 929000)
@@ -56,6 +97,6 @@ d = datetime.datetime(2020, 1, 20, 18, 44, 8, 929000)
 
 # Index
 #collection.create_index([("id", pymongo.ASCENDING)], unique=True) # Create a index on a key that rejects documents whose value for that key already exists in the index
-print(sorted(list(collection.index_information())))
-collection.insert_one({"name": "Tecoman", "phone": "3141093387", "date": datetime.datetime.utcnow(), "id": 18})
+#print(sorted(list(collection.index_information())))
+#collection.insert_one({"name": "Tecoman", "phone": "3141093387", "date": datetime.datetime.utcnow(), "id": 18})
 #collection.insert_one({"name": "Colima", "phone": "3141093387", "date": datetime.datetime.utcnow(), "id": 16})
