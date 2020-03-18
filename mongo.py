@@ -4,14 +4,22 @@ import datetime, pymongo
 
 # Connection with MongoClient, getting database and collection
 mongoClient = MongoClient('mongodb://localhost:27017/')
-db = mongoClient.pymongo
-collection = db.dictionary
+db = mongoClient.a8_analytics
+collection = db.events
 
 # Inserting documents
 """collection.insert_many(
     [
-        {"name": "Edson", "phone": "3141093387", "date": datetime.datetime.utcnow()},
-        {"name": "Yosa", "phone": "3141093387", "date": datetime.datetime.utcnow()}
+        {"id": 1, "name": "Edson", "phone": "3141093387", "date": datetime.datetime.utcnow()},
+        {"id": 2, "name": "Yosa", "phone": "3141093387", "date": datetime.datetime.utcnow()},
+        {"id": 3, "name": "CDMX", "phone": "3141093387", "date": datetime.datetime.utcnow()},
+        {"id": 4, "name": "Colima", "phone": "3141093387", "date": datetime.datetime.utcnow()},
+        {"id": 5, "name": "Edson", "phone": "3141093387", "date": datetime.datetime.utcnow()},
+        {"id": 6, "name": "Evelyn", "phone": "3141093387", "date": datetime.datetime.utcnow()},
+        {"id": 7, "name": "Abraxas", "phone": "3141093387", "date": datetime.datetime.utcnow()},
+        {"id": 8, "name": "Grupo", "phone": "3141093387", "date": datetime.datetime.utcnow()},
+        {"id": 9, "name": "Manza", "phone": "3141093387", "date": datetime.datetime.utcnow()},
+        {"id": 10, "name": "Yosa", "phone": "3141093387", "date": datetime.datetime.utcnow()}
     ]
 )"""
 
@@ -19,44 +27,22 @@ collection = db.dictionary
 print(id) # Prints its ObjectId (ObjectId type)
 idStr = str(id)"""
 
-collection.insert_one({
-    "Tabla": "Prueba6",
-    "Periodicidad": 0,
-    "Data":[
-        {
-            "Clave": "NOM",
-            "Llave": "",
-            "Campo": "Nombre",
-            "TipoDeDato": "String",
-            "TipoDeDatoEstadistico": "",
-            "Descripcion": "Identifica el nombre",
-            "Estructura": "",
-            "Longitud": "",
-            "Dominio": "",
-            "Alias": "",
-            "Area": "",
-            "Marca": "",
-            "Pais": "",
-            "Region": ""
-        },
-        {
-            "Clave": "RFC",
-            "Llave": "",
-            "Campo": "RFC",
-            "TipoDeDato": "String",
-            "TipoDeDatoEstadistico": "",
-            "Descripcion": "Identifica el nombre",
-            "Estructura": "",
-            "Longitud": "",
-            "Dominio": "",
-            "Alias": "",
-            "Area": "",
-            "Marca": "",
-            "Pais": "",
-            "Region": ""
-        }
-    ]
-})
+# datetime(year, month, day, hour, minute, second, microsecond)
+a = datetime.datetime(2020, 1, 15, 2, 1, 20, 342380)
+
+for _ in range(5):
+    collection.insert_one({
+  'event_type': 1,
+  'metadata': {
+    'timestamp': a,
+    'user': '',
+    'namespace': 'local_env',
+    'agent': 'teams'
+  },
+  'dialogflow_data': { 'intent': '', 'question': 'hola', 'entities': None }
+}
+)
+    pass
 
 #collection.update_one({}, {"$set": {"tabla": "Prueba"}})
 
