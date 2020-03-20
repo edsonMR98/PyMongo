@@ -28,21 +28,26 @@ print(id) # Prints its ObjectId (ObjectId type)
 idStr = str(id)"""
 
 # datetime(year, month, day, hour, minute, second, microsecond)
-a = datetime.datetime(2020, 1, 15, 2, 1, 20, 342380)
+a = datetime.datetime(2020, 1, 1, 23, 1, 20, 342380)
+print(a)
 
-for _ in range(5):
-    collection.insert_one({
-  'event_type': 1,
-  'metadata': {
-    'timestamp': a,
-    'user': '',
-    'namespace': 'local_env',
-    'agent': 'teams'
-  },
-  'dialogflow_data': { 'intent': '', 'question': 'hola', 'entities': None }
-}
-)
-    pass
+# Inserts random num events each hour
+import random
+for day in range(1, 32):
+    for hour in range(24):
+        for etype in range(5):
+            a = datetime.datetime(2020, 12, day, hour, 1, 20, 342380)
+            for _ in range(random.randint(1, 3)):
+                collection.insert_one({
+                    'event_type': etype,
+                    'metadata': {
+                        'timestamp': a,
+                        'user': '',
+                        'namespace': 'local_env',
+                        'agent': 'teams'
+                    },
+                    'dialogflow_data': { 'intent': '', 'question': 'hola', 'entities': None }
+                })
 
 #collection.update_one({}, {"$set": {"tabla": "Prueba"}})
 
@@ -64,7 +69,7 @@ for _ in range(5):
 x = 0
 for doc in collection.find(): # Prints all the collection docuemnts. .find({}, {"_id": 1}) = Shows just _id field
     x += 1
-    print(doc)
+    #print(doc)
     #collection.update_one({"_id": doc["_id"]}, {"$set": {"id": x}}) # Adds new field each document
 
 """for doc in collection.find({"name": "CDMX"}): # Prints all collections documents matched
@@ -85,4 +90,4 @@ d = datetime.datetime(2020, 1, 20, 18, 44, 8, 929000)
 #collection.create_index([("id", pymongo.ASCENDING)], unique=True) # Create a index on a key that rejects documents whose value for that key already exists in the index
 #print(sorted(list(collection.index_information())))
 #collection.insert_one({"name": "Tecoman", "phone": "3141093387", "date": datetime.datetime.utcnow(), "id": 18})
-#collection.insert_one({"name": "Colima", "phone": "3141093387", "date": datetime.datetime.utcnow(), "id": 16})
+#collection.insert_one({"name": "Colima", "phone": "3141093387", "date": datetime.datetime.utcnow(), "id": 16})print(day, ':', hour)
